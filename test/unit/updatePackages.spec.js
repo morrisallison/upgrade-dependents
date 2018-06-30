@@ -115,12 +115,12 @@ describe("upgradePackages", () => {
   context("when dry run is disabled", () => {
     beforeEach(() => {
       options.dryRun = false;
-
-      td.when(jsonFilePlusMock.save()).thenResolve();
     });
 
     it("writes to the filesystem", async () => {
       await upgradePackages(options);
+
+      td.verify(jsonFilePlusMock.save());
     });
   });
 });
