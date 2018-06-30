@@ -5,10 +5,13 @@
 [![npm Version][badge-npm]][npm]
 [![MIT License][badge-license]][license]
 [![Travis CI Build Status][badge-travis]][travis]
+[![Greenkeeper badge][badge-greenkeeper]][greenkeeper]
 
-[badge-license]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
-[badge-npm]: https://img.shields.io/npm/v/upgrade-dependents.svg?style=flat-square
-[badge-travis]: https://img.shields.io/travis/morrisallison/upgrade-dependents.svg?style=flat-square
+[badge-greenkeeper]: https://badges.greenkeeper.io/morrisallison/upgrade-dependents.svg?style=flat
+[badge-license]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[badge-npm]: https://img.shields.io/npm/v/upgrade-dependents.svg?style=flat
+[badge-travis]: https://img.shields.io/travis/morrisallison/upgrade-dependents.svg?style=flat
+[greenkeeper]: https://greenkeeper.io/
 [license]: https://github.com/morrisallison/upgrade-dependents/raw/master/LICENSE
 [npm]: https://www.npmjs.com/package/upgrade-dependents
 [travis]: https://travis-ci.org/morrisallison/upgrade-dependents
