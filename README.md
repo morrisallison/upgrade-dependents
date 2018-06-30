@@ -1,5 +1,7 @@
 # Upgrade Dependents
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/morrisallison/upgrade-dependents.svg)](https://greenkeeper.io/)
+
 > A utility to upgrade package dependents.
 
 [![npm Version][badge-npm]][npm]
