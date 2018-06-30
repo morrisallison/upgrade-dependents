@@ -7,7 +7,8 @@
     "upgrade-dependents": "./bin/upgrade-dependents.js"
   },
   "scripts": {
-    "test": "tap -J -R=spec --cov \"./test/**/*.spec.js\"",
+    "unit": "tap -J -R=spec \"./test/**/*.spec.js\"",
+    "test": "npm run unit -- --cov",
     "lint": "tslint --project .",
     "clean": "rimraf ./lib",
     "build": "tsc",
