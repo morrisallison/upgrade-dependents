@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "@morrisallison/e",
+  "version": "0.0.0",
+  "peerDependencies": {
+    "@morrisallison/b": ">=0.1.0"
+  }
+}

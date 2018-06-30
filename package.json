@@ -1,0 +1,85 @@
+{
+  "name": "upgrade-dependents",
+  "version": "1.0.0",
+  "description": "A utility to upgrade package dependents",
+  "main": "./index.js",
+  "bin": {
+    "upgrade-dependents": "./bin/upgrade-dependents.js"
+  },
+  "scripts": {
+    "test": "tap -J -R=spec --cov \"./test/**/*.spec.js\"",
+    "lint": "tslint --project .",
+    "clean": "rimraf ./lib",
+    "build": "tsc",
+    "report": "nyc report --reporter=lcov",
+    "ci": "npm run lint && npm run build && npm run test && npm run report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morrisallison/upgrade-dependents.git"
+  },
+  "keywords": [
+    "cli",
+    "dependencies",
+    "lerna",
+    "monorepo",
+    "package",
+    "semver",
+    "utility",
+    "versioning",
+    "workspace",
+    "yarn"
+  ],
+  "author": "Morris Allison III <author@morris.xyz> (http://morris.xyz)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/morrisallison/upgrade-dependents/issues"
+  },
+  "homepage": "https://github.com/morrisallison/upgrade-dependents#readme",
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "dependencies": {
+    "find-yarn-workspace-root": "^1.1.0",
+    "get-monorepo-packages": "^1.0.1",
+    "json-file-plus": "^3.3.1",
+    "p-limit": "^2.0.0",
+    "read-pkg": "^3.0.0",
+    "semver": "^5.5.0",
+    "semver-utils": "^1.1.2",
+    "yargs": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^10.3.4",
+    "@types/p-limit": "^2.0.0",
+    "@types/read-pkg": "^3.0.0",
+    "@types/semver": "^5.5.0",
+    "@types/yargs": "^11.0.0",
+    "expect": "^23.1.0",
+    "prettier": "1.13.6",
+    "rimraf": "^2.6.2",
+    "tap": "^12.0.1",
+    "testdouble": "^3.8.1",
+    "ts-node": "^6.2.0",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.13.0",
+    "typescript": "^2.9.2"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "index.js",
+    "semantic-release.js"
+  ],
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*"
+    ],
+    "exclude": [
+      "test/**/*"
+    ]
+  }
+}

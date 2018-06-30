@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "@morrisallison/b",
+  "version": "0.0.0",
+  "dependencies": {
+    "@morrisallison/a": "^0.1.0"
+  }
+}
