@@ -13,6 +13,22 @@
 [npm]: https://www.npmjs.com/package/upgrade-dependents
 [travis]: https://travis-ci.org/morrisallison/upgrade-dependents
 
+## Overview
+
+Upgrade Dependents will discover and upgrade all compatibile dependents within a directory.
+
+#### Features
+
+* Adheres to [Semantic Versioning 2.0.0][] — no unexpected breaking changes
+* Support for [Semantic Release][] — seamless configuration via a plugin
+* [Yarn workspaces][] detection — simply run the command in a package directory
+* CLI utility — for ad hoc uses
+* Dry run mode — test without fear
+
+[Semantic Release]: https://github.com/semantic-release/semantic-release
+[Semantic Versioning 2.0.0]: https://semver.org/
+[Yarn workspaces]: https://yarnpkg.com/lang/en/docs/workspaces/
+
 ## Usage
 
 ### CLI
@@ -41,7 +57,6 @@ upgradeDependents("/workspace/packages/my-package");
 
 Upgrade Dependents can also be used as a plugin for [Semantic Release][]. This is particularly useful when used with [Semantic Release Monorepo][].
 
-[Semantic Release]: https://github.com/semantic-release/semantic-release
 [Semantic Release Monorepo]: https://github.com/Updater/semantic-release-monorepo
 
 _Example configuration:_
