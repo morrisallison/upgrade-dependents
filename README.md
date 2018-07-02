@@ -15,7 +15,7 @@
 
 ## Overview
 
-Upgrade Dependents will discover and upgrade all compatibile dependents within a directory.
+Upgrade Dependents will discover and upgrade all compatible dependents within a directory.
 
 #### Features
 
