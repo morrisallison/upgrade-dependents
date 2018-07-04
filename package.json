@@ -25,6 +25,7 @@
     "lerna",
     "monorepo",
     "package",
+    "semantic-release",
     "semver",
     "utility",
     "versioning",
