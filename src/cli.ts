@@ -10,9 +10,9 @@ function handleError(error: Error) {
 }
 
 function handleRunCommand(argv: yargs.Arguments) {
-  const { workspaceDir, packageDir, dryRun } = argv;
+  const { workspaceDir, packageDir, dryRun, force } = argv;
   const logger = createLogger();
-  const options = { dryRun, logger, workspaceDir };
+  const options = { dryRun, force, logger, workspaceDir };
 
   upgradeDependents(packageDir, options).catch(handleError);
 }
@@ -42,6 +42,11 @@ function createRunCommand() {
         describe: "Run without persisting changes.",
         boolean: true
       },
+      force: {
+        alias: 'f',
+        describe: "Force package upgrades, ignoring existing version ranges.",
+        boolean: true
+      }
     }
   };
   /* tslint:enable:object-literal-sort-keys */

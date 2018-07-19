@@ -14,16 +14,23 @@ const limit = pLimit(20);
 interface UpgradePackageOptions {
   dependentPackageInfo: PackageInfo;
   dryRun: boolean;
+  force: boolean;
   workingPackageMeta: GetMonorepoPackages.PackageMeta;
   logger: Logger;
 }
 
 async function upgradePackage(options: UpgradePackageOptions) {
-  const { workingPackageMeta, dependentPackageInfo, dryRun, logger } = options;
+  const {
+    workingPackageMeta,
+    dependentPackageInfo,
+    dryRun,
+    force,
+    logger
+  } = options;
   const { name: dependencyName, version: newVersion } = workingPackageMeta;
   const { location, meta } = dependentPackageInfo;
   const oldRange = getDependencyRange(dependencyName, meta);
-  const newRange = createRange(oldRange, newVersion);
+  const newRange = force ? `^${newVersion}` : createRange(oldRange, newVersion);
   const packageJsonPath = path.join(location, "package.json");
   const property = getDesignationProperty(dependencyName, meta);
 
@@ -48,13 +55,14 @@ async function upgradePackage(options: UpgradePackageOptions) {
 
 interface UpgradePackagesOptions {
   dryRun: boolean;
+  force: boolean;
   logger: Logger;
   packageInfos: PackageInfo[];
   workingPackageMeta: GetMonorepoPackages.PackageMeta;
 }
 
 export function upgradePackages(options: UpgradePackagesOptions) {
-  const { workingPackageMeta, packageInfos, dryRun, logger } = options;
+  const { workingPackageMeta, packageInfos, dryRun, force, logger } = options;
 
   if (dryRun) {
     logger.log(logs.upgradeDryRun());
@@ -65,6 +73,7 @@ export function upgradePackages(options: UpgradePackagesOptions) {
       upgradePackage({
         dependentPackageInfo,
         dryRun,
+        force,
         logger,
         workingPackageMeta
       })

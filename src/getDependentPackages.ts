@@ -14,19 +14,29 @@ function normalizeInfo({
 }
 
 interface Options {
+  force: boolean;
   logger: Logger;
   workingPackageMeta: GetMonorepoPackages.PackageMeta;
   workspaceDir: string;
 }
 
-export async function getDependentPackages({ workspaceDir, workingPackageMeta, logger }: Options) {
+export async function getDependentPackages({
+  force,
+  logger,
+  workingPackageMeta,
+  workspaceDir
+}: Options) {
   const packageInfos = getPackages(workspaceDir).map(normalizeInfo);
 
   if (packageInfos.length === 0) {
     return [];
   }
 
-  const isDependentPackage = createDependentPackageDeterminer({ workingPackageMeta, logger });
+  const isDependentPackage = createDependentPackageDeterminer({
+    force,
+    logger,
+    workingPackageMeta
+  });
 
   return packageInfos.filter(isDependentPackage);
 }
