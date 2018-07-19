@@ -8,13 +8,16 @@ import { upgradePackages } from "./upgradePackages";
 
 interface Options {
   dryRun?: boolean;
+  force?: boolean;
   logger?: Logger;
   workspaceDir?: string;
 }
 
 export async function upgradeDependents(packageDir: string, options: Options = {}) {
-  const { dryRun = false, logger = createLogger() } = options;
-  const { meta: workingPackageMeta, location } = await getPackageInfo(packageDir);
+  const { dryRun = false, force = false, logger = createLogger() } = options;
+  const { meta: workingPackageMeta, location } = await getPackageInfo(
+    packageDir
+  );
   const workspaceDir = options.workspaceDir || findWorkspaceRoot(location);
 
   if (!workspaceDir) {
@@ -23,7 +26,12 @@ export async function upgradeDependents(packageDir: string, options: Options = {
 
   logger.log(logs.foundPackage(workingPackageMeta));
 
-  const packageInfos = await getDependentPackages({ workspaceDir, workingPackageMeta, logger });
+  const packageInfos = await getDependentPackages({
+    force,
+    logger,
+    workingPackageMeta,
+    workspaceDir
+  });
   const packageCount = packageInfos.length;
 
   if (packageCount === 0) {
@@ -35,6 +43,7 @@ export async function upgradeDependents(packageDir: string, options: Options = {
 
   await upgradePackages({
     dryRun,
+    force,
     logger,
     packageInfos,
     workingPackageMeta

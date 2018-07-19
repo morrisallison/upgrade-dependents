@@ -17,9 +17,10 @@ function isComplexRange(range: string) {
 interface Options {
   workingPackageMeta: GetMonorepoPackages.PackageMeta;
   logger: Logger;
+  force: boolean;
 }
 
-export function createDependentPackageDeterminer({ workingPackageMeta, logger }: Options) {
+export function createDependentPackageDeterminer({ workingPackageMeta, logger, force }: Options) {
   const { name: dependencyName, version: dependencyVersion } = workingPackageMeta;
 
   return function isDependentPackage(info: PackageInfo) {
@@ -28,6 +29,10 @@ export function createDependentPackageDeterminer({ workingPackageMeta, logger }:
 
     if (!designation) {
       return false;
+    }
+
+    if (force) {
+      return true;
     }
 
     const property = packagePropertyByDesignation[designation];
