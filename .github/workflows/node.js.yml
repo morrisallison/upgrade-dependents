@@ -34,10 +34,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
   
     - name: Install Dependencies
-    - run: npm ci
+      run: npm ci
       
     - name: Test and Build
-    - run: npm run ci
+      run: npm run ci
       
     - name: Codecov
       uses: codecov/codecov-action@v1.0.7
