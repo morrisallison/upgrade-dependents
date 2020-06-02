@@ -9,12 +9,19 @@ function handleError(error: Error) {
   process.exit(1);
 }
 
-function handleRunCommand(argv: yargs.Arguments) {
-  const { workspaceDir, packageDir, dryRun, force } = argv;
-  const logger = createLogger();
-  const options = { dryRun, force, logger, workspaceDir };
+interface CliOptions {
+  dryRun?: boolean;
+  force?: boolean;
+  packageDir: string;
+  workspaceDir?: string;
+}
 
-  upgradeDependents(packageDir, options).catch(handleError);
+function handleRunCommand(options: CliOptions) {
+  const { workspaceDir, packageDir, dryRun, force } = options;
+  const logger = createLogger();
+  const params = { dryRun, force, logger, workspaceDir };
+
+  upgradeDependents(packageDir, params).catch(handleError);
 }
 
 function createRunCommand() {
@@ -25,25 +32,26 @@ function createRunCommand() {
     handler: handleRunCommand,
     builder: {
       packageDir: {
-        alias: 'p',
+        alias: "p",
         describe: "The directory of the package to propagate.",
         normalize: true,
         default: process.cwd(),
         defaultDescription: "The current working directory."
       },
       workspaceDir: {
-        alias: 'w',
+        alias: "w",
         describe: "The directory to search for dependents.",
         normalize: true,
-        defaultDescription: "Yarn workspace directory relative to the package directory."
+        defaultDescription:
+          "Yarn workspace directory relative to the package directory."
       },
       dryRun: {
-        alias: 'd',
+        alias: "d",
         describe: "Run without persisting changes.",
         boolean: true
       },
       force: {
-        alias: 'f',
+        alias: "f",
         describe: "Force package upgrades, ignoring existing version ranges.",
         boolean: true
       }

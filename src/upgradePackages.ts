@@ -1,5 +1,7 @@
+import { PackageMeta } from "get-monorepo-packages";
 import jsonFilePlus = require("json-file-plus");
-import pLimit = require("p-limit");
+import pLimit from "p-limit";
+// import pLimit = require("p-limit");
 import * as path from "path";
 
 import { Logger } from "./createLogger";
@@ -15,7 +17,7 @@ interface UpgradePackageOptions {
   dependentPackageInfo: PackageInfo;
   dryRun: boolean;
   force: boolean;
-  workingPackageMeta: GetMonorepoPackages.PackageMeta;
+  workingPackageMeta: PackageMeta;
   logger: Logger;
 }
 
@@ -58,7 +60,7 @@ interface UpgradePackagesOptions {
   force: boolean;
   logger: Logger;
   packageInfos: PackageInfo[];
-  workingPackageMeta: GetMonorepoPackages.PackageMeta;
+  workingPackageMeta: PackageMeta;
 }
 
 export function upgradePackages(options: UpgradePackagesOptions) {

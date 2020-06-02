@@ -5,7 +5,7 @@ import { PackageInfo } from "./PackageInfo";
 
 export async function getPackageInfo(packageDir: string): Promise<PackageInfo> {
   const location = path.resolve(packageDir);
-  const meta = await readPkg(packageDir);
+  const meta = await readPkg({ cwd: packageDir });
 
   return { location, meta };
 }

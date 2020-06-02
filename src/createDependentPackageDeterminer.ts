@@ -1,3 +1,4 @@
+import { PackageMeta, DependenciesHashTable } from "get-monorepo-packages";
 import * as semver from "semver";
 import * as semverUtils from "semver-utils";
 
@@ -15,7 +16,7 @@ function isComplexRange(range: string) {
 }
 
 interface Options {
-  workingPackageMeta: GetMonorepoPackages.PackageMeta;
+  workingPackageMeta: PackageMeta;
   logger: Logger;
   force: boolean;
 }
@@ -36,7 +37,7 @@ export function createDependentPackageDeterminer({ workingPackageMeta, logger, f
     }
 
     const property = packagePropertyByDesignation[designation];
-    const dependencies = dependentMeta[property] as GetMonorepoPackages.DependenciesHashTable;
+    const dependencies = dependentMeta[property] as DependenciesHashTable;
     const dependentRange = dependencies[dependencyName];
 
     if (isComplexRange(dependentRange)) {

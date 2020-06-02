@@ -1,3 +1,5 @@
+import { PackageMeta, DependenciesHashTable } from "get-monorepo-packages";
+
 import {
   availableDesignations,
   packagePropertyByDesignation
@@ -5,11 +7,11 @@ import {
 
 export function getDependencyDesignation(
   dependencyName: string,
-  packageMeta: GetMonorepoPackages.PackageMeta
+  packageMeta: PackageMeta
 ) {
   return availableDesignations.find(designation => {
     const property = packagePropertyByDesignation[designation];
-    const dependencies = packageMeta[property] as GetMonorepoPackages.DependenciesHashTable;
+    const dependencies = packageMeta[property] as DependenciesHashTable;
 
     if (!dependencies) {
       return false;

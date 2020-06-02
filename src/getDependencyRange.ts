@@ -1,3 +1,5 @@
+import { PackageMeta, DependenciesHashTable } from "get-monorepo-packages";
+
 import { packagePropertyByDesignation } from "./designations";
 import { getDependencyDesignation } from "./getDependencyDesignation";
 
@@ -5,7 +7,7 @@ const depErrorMsg = "Dependency not found within package metadata.";
 
 export function getDependencyRange(
   dependencyName: string,
-  packageMeta: GetMonorepoPackages.PackageMeta
+  packageMeta: PackageMeta
 ) {
   const designation = getDependencyDesignation(dependencyName, packageMeta);
 
@@ -20,7 +22,5 @@ export function getDependencyRange(
     throw new Error(depErrorMsg);
   }
 
-  return (dependencies as GetMonorepoPackages.DependenciesHashTable)[
-    dependencyName
-  ];
+  return (dependencies as DependenciesHashTable)[dependencyName];
 }

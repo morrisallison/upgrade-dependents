@@ -1,7 +1,6 @@
-export function foundPackage({
-  name,
-  version
-}: GetMonorepoPackages.PackageMeta) {
+import { PackageMeta } from "get-monorepo-packages";
+
+export function foundPackage({ name, version }: PackageMeta) {
   return `Found package ${name}@${version}.`;
 }
 
@@ -13,7 +12,7 @@ export function dependentsFound(count: number) {
   return `Found ${count} dependent ${count > 1 ? "packages" : "package"}.`;
 }
 
-export function skipPackageWithComplexRange({ name, version }: GetMonorepoPackages.PackageMeta) {
+export function skipPackageWithComplexRange({ name, version }: PackageMeta) {
   return `Skipping ${name}@${version}. Version range is too complex.`;
 }
 
@@ -22,7 +21,7 @@ export function upgradeDryRun() {
 }
 
 export function packageUpgraded(
-  dependentMeta: GetMonorepoPackages.PackageMeta,
+  dependentMeta: PackageMeta,
   dependencyName: string,
   newRange: string
 ) {

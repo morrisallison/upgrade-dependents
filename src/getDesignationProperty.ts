@@ -1,9 +1,11 @@
+import { PackageMeta } from "get-monorepo-packages";
+
 import { packagePropertyByDesignation } from "./designations";
 import { getDependencyDesignation } from "./getDependencyDesignation";
 
 export function getDesignationProperty(
   dependencyName: string,
-  packageMeta: GetMonorepoPackages.PackageMeta
+  packageMeta: PackageMeta
 ) {
   const designation = getDependencyDesignation(dependencyName, packageMeta);
 

@@ -1,12 +1,9 @@
-import getPackages = require("get-monorepo-packages");
+import * as getMonorepoPackages from "get-monorepo-packages";
 
 import { createDependentPackageDeterminer } from "./createDependentPackageDeterminer";
 import { Logger } from "./createLogger";
 
-function normalizeInfo({
-  location,
-  package: meta
-}: GetMonorepoPackages.PackageInfo) {
+function normalizeInfo({ location, package: meta }: getMonorepoPackages.PackageInfo) {
   return {
     location,
     meta
@@ -16,7 +13,7 @@ function normalizeInfo({
 interface Options {
   force: boolean;
   logger: Logger;
-  workingPackageMeta: GetMonorepoPackages.PackageMeta;
+  workingPackageMeta: getMonorepoPackages.PackageMeta;
   workspaceDir: string;
 }
 
@@ -26,7 +23,7 @@ export async function getDependentPackages({
   workingPackageMeta,
   workspaceDir
 }: Options) {
-  const packageInfos = getPackages(workspaceDir).map(normalizeInfo);
+  const packageInfos = getMonorepoPackages(workspaceDir).map(normalizeInfo);
 
   if (packageInfos.length === 0) {
     return [];
